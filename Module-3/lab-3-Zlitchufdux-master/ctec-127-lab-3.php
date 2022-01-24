@@ -103,7 +103,7 @@
                         echo "<li>Comments: $comments</li>";
                         echo "</ul>";
                     } else {
-                        echo "<p>Please fill out all 4 fields!</p>";
+                        echo "<p>Please fill out all 4 fields</p>";
                     }
                 }
 
