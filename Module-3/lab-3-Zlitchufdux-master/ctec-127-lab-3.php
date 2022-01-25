@@ -112,7 +112,6 @@
 
 
 
-
                 ?>
                 <form action="ctec-127-lab-3.php" method="post">
                     <div class="mb-3">
