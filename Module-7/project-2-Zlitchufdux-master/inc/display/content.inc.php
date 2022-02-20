@@ -16,7 +16,7 @@ if (isset($_GET['sortby'])) {
 if (isset($_GET['clearfilter'])) {
     $filter = '';
 }
-
+//here is where you can sort/order by first name, last name, etc..
 if (isset($_GET["filter"])) {
     $sql = "SELECT * FROM $db_table WHERE last_name LIKE :filter";
     $stmt = $db->prepare($sql);
@@ -28,15 +28,22 @@ if (isset($_GET["filter"])) {
         $sql = "SELECT * FROM $db_table ORDER BY last_name ASC";
     } elseif ($orderby == "student_id") {
         $sql = "SELECT * FROM $db_table ORDER BY student_id ASC";
+    } elseif ($orderby == "degree_program") {
+        $sql = "SELECT * FROM $db_table ORDER BY degree_program ASC";
+    } elseif ($orderby == "financial_aid") {
+        $sql = "SELECT * FROM $db_table ORDER BY financial_aid ASC";
+    } elseif ($orderby == "gpa") {
+        $sql = "SELECT * FROM $db_table ORDER BY gpa ASC";
     } elseif ($orderby == "phone") {
         $sql = "SELECT * FROM $db_table ORDER BY phone ASC";
     } elseif ($orderby == "email") {
         $sql = "SELECT * FROM $db_table ORDER BY email ASC";
     }
     $stmt = $db->prepare($sql);
-    $stmt->execute(["orderby" => $orderby]);
+    $stmt->execute();
+    // $stmt->execute(["orderby" => $orderby]);
 } else {
-    $sql = "SELECT * FROM $db_table";
+    $sql = "SELECT * FROM $db_table ORDER BY data_created DESC";
     $stmt = $db->prepare($sql);
     $stmt->execute();
 }

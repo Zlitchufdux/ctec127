@@ -45,118 +45,46 @@
         </div>
     </div>
 
-    <?php
+    <div class="container">
+        <?php
 
-    $aralia = False;
-    $ash = False;
-    $arborvitae = False;
+        $aralia = false;
+        $ash = false;
+        $arborvitae = false;
 
-    if (isset($_GET["aralia"]) && $_GET["aralia"] == "yes") {
-        require "inc/aralia.inc.html";
-    } else {
-        $aralia = True;
-    }
+        //if you put in just the ?aralia parameter, you will see only the ash trees
+        if (isset($_GET["aralia"])) {
+            require "inc/aralia.inc.html";
+        } else {
+            $aborvitae = true;
+        }
 
-    if (isset($_GET["arborvitae"]) && $_GET["arborvitae"] == "yes") {
-        require "inc/arborvitae.inc.html";
-    } else {
-        $aborvitae = True;
-    }
+        //if you put in just the ?arborvitae parameter, you will see only the ash trees
+        if (isset($_GET["arborvitae"])) {
+            require "inc/arborvitae.inc.html";
+        } else {
+            $aborvitae = true;
+        }
 
-    if (isset($_GET["ash"]) && $_GET["ash"] == "yes") {
-        require "inc/ash.inc.html";
-    } else {
-        $ash = True;
-    }
+        //if you put in just the ?ash parameter, you will see only the ash trees
+        if (isset($_GET["ash"])) {
+            require "inc/ash.inc.html";
+        } else {
+            $ash = true;
+        }
 
-    if ($ash && $arborvitae && $aralia) {
-        require "inc/aralia.inc.html";
-        require "inc/arborvitae.inc.html";
-        require "inc/ash.inc.html";
-    }
-    ?>
+        //if you put in all three parameters and or two parameters, you will get show the trees you put in the parameter using &
+        if ($ash && $aralia && $arborvitae) {
+            require "inc/aralia.inc.html";
+            require "inc/arborvitae.inc.html";
+            require "inc/ash.inc.html";
+        }
 
-    <div class="container mt-3">
-        <h3 class="text-white p-3 shadow">Aralia</h3>
-        <div class="row mb-3">
-            <div class="col-sm-12 col-md-6 col-lg-4">
-                <div class="card mt-3 mb-3 shadow">
-                    <div class="card-header align-leff">
-                        <a href="https://www.google.com/maps/search/?api=1&query=45.63472,-122.6500">Castor Aralia
-                        </a>
-                    </div>
-                    <img class="card-img-top" src="img/trees/castor_aralia.jpg" alt="Kalopanax pictus">
-                    <div class="card-body">
-                        <p class="card-text"><strong>Common Genus:</strong> Aralia<br>
-                            <strong>Botanical Name:</strong> <em>Kalopanax pictus</em>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <h3 class="p-3 shadow">Arborvitae</h3>
-        <div class="row mb-3">
-            <div class="col-sm-12 col-md-6 col-lg-4">
-                <div class="card mt-3 mb-3 shadow">
-                    <div class="card-header shadow">
-                        <a href="https://www.google.com/maps/search/?api=1&query=45.63472,-122.65247">American
-                            Arborvitae</a>
-                    </div>
-                    <img class="card-img-top" src="img/trees/evergreen48.jpg" alt="occidentalis">
-                    <div class="card-body">
-                        <p class="card-text"><strong>Common Genus:</strong> Arborvitae<br>
-                            <strong>Botanical Name:</strong> <em>occidentalis</em>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <h3 class="p-3 shadow">Ash</h3>
-        <div class="row mb-3">
-            <div class="col-sm-12 col-md-6 col-lg-4">
-                <div class="card mt-3 mb-3 shadow">
-                    <div class="card-header shadow">
-                        <a href="https://www.google.com/maps/search/?api=1&query=45.635857,-122.652392">Rose Hill Ash</a>
-                    </div>
-                    <img class="card-img-top" src="img/trees/deciduous33.jpg" alt="americana">
-                    <div class="card-body">
-                        <p class="card-text"><strong>Common Genus:</strong> Ash<br>
-                            <strong>Botanical Name:</strong> <em>americana</em>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-12 col-md-6 col-lg-4">
-                <div class="card mt-3 mb-3 shadow">
-                    <div class="card-header shadow">
-                        <a href="https://www.google.com/maps/search/?api=1&query=45.63591,-122.65031">Raywood Ash</a>
-                    </div>
-                    <img class="card-img-top" src="img/trees/deciduous34.jpg" alt="angustifolia">
-                    <div class="card-body">
-                        <p class="card-text"><strong>Common Genus:</strong> Ash<br>
-                            <strong>Botanical Name:</strong> <em>angustifolia</em>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-12 col-md-6 col-lg-4">
-                <div class="card mt-3 mb-3 shadow">
-                    <div class="card-header shadow">
-                        <a href="https://www.google.com/maps/search/?api=1&query=45.635541,-122.649899">Oregon Ash</a>
-                    </div>
-                    <img class="card-img-top" src="img/trees/deciduous35.jpg" alt="latifolia">
-                    <div class="card-body">
-                        <p class="card-text"><strong>Common Genus:</strong> Ash<br>
-                            <strong>Botanical Name:</strong> ∏<em>latifolia</em>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        // if (!isset($_GET["ash" && "aralia" && "arborvitae"])) {
+        //    require "inc/aralia.inc.html";
+        //    require "inc/arborvitae.inc.html";
+        //    require "inc/ash.inc.html";
+        ?>
     </div>
 
     <!-- Bootstrap JavaScript -->

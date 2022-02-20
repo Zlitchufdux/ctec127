@@ -8,7 +8,7 @@ function display_message()
         echo '</div>';
     }
 }
-
+//you can click on the single letters to filter names by that letter
 function display_letter_filters($filter)
 {
     echo '<span class="d-inline-block mr-3">Filter by <strong>Last Name</strong></span> ';
@@ -26,24 +26,36 @@ function display_letter_filters($filter)
     echo '<a class="text-secondary p-2 mx-2 bg-primary text-light border rounded" href="?clearfilter" title="Reset Filter">Reset</a>&nbsp;&nbsp;';
 }
 
+# here you can add things like First Name and sort the categories
 function display_record_table($records)
 {
     echo '<div class="table-responsive">';
     echo "<table class=\"table table-striped table-hover table-sm mt-3 table-bordered\">";
-    echo '<thead class="table-dark"><tr><th class="bg-primary">Actions</th><th><a href="?sortby=student_id">Student ID</a></th><th><a href="?sortby=first_name">First Name</a></th><th><a href="?sortby=last_name">Last Name</a></th><th><a href="?sortby=degree_program">Degree Program</a></th><th><a href="?sortby=gpa">GPA</a></th><th><a href="?sortby=financial_aid">Financial Aid</a></th><th><a href="?sortby=phone">Phone</a></th></thead>';
+    echo '<thead class="table-dark"><tr><th class="bg-primary">Actions</th>
+    <th><a href="?sortby=first_name">First Name</a></th>
+    <th><a href="?sortby=last_name">Last Name</a></th>
+    <th><a href="?sortby=student_id">Student ID</a></th>
+    <th><a href="?sortby=gpa">GPA</a></th>
+    <th><a href="?sortby=financial_aid">Financial Aid</a></th>
+    <th><a href="?sortby=degree_program">Degree Program</a></th>>
+    <th><a href="?sortby=email">Email</a></th>
+    <th><a href="?sortby=phone">Phone</a></th>
+    <th><a href="?sortby=date_created">Data Created</a></th></thead>';
+
 
     foreach ($records as $row) {
         # display rows and columns of data
         echo '<tr>';
         echo "<td><a href=\"update-record.php?id={$row->id}\">Update</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href=\"delete-record.php?id={$row->id}\" onclick=\"return confirm('Are you sure?');\">Delete</a></td>";
-        echo "<td>{$row->student_id}</td>";
         echo "<td><strong>{$row->first_name}</strong></td>";
         echo "<td><strong>{$row->last_name}</strong></td>";
-        echo "<td>{$row->email}</td>";
-        echo "<td>{$row->degree_program}</td>";
-        echo "<td>{$row->gpa}</td>";
-        echo "<td>{$row->financial_aid}</td>";
-        echo "<td>{$row->phone}</td>";
+        echo "<td><strong>{$row->student_id}</strong></td>";
+        echo "<td><strong>{$row->gpa}</strong></td>";
+        echo "<td><strong>{$row->financial_aid}</strong></td>";
+        echo "<td><strong>{$row->degree_program}</strong></td>";
+        echo "<td><strong>{$row->email}</strong></td>";
+        echo "<td><strong>{$row->phone}</strong></td>";
+        echo "<td><strong>{$row->data_created}</strong></td>";
         echo '</tr>';
     } // end while
     echo '</table>';

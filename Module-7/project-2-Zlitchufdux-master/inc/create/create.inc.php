@@ -5,9 +5,17 @@ require_once __DIR__ . "/../functions/functions.inc.php";
 require_once __DIR__ . "/../app/config.inc.php";
 
 $error_bucket = [];
+$degree_program = "";
+$gpa = "";
+$student_id = "";
+$financial_aid = "";
+//financial_aid_yes and no = false will not have the button selected at first when creating a record.
+$financial_aid_yes = false;
+$financial_aid_no = false;
 
+//This section will give you the options and errors when creating a record
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // First insure that all required fields are filled in
+
     if (empty($_POST["first"])) {
         array_push($error_bucket, "<p>A first name is required.</p>");
     } else {
@@ -23,6 +31,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $student_id = intval($_POST["student_id"]);
     }
+    if (isset($_POST["financial_aid"])) {
+        if ($_POST["financial_aid"] == '1') {
+            $financial_aid = $_POST["financial_aid"];
+            $financial_aid_yes = true;
+            $financial_aid_no = false;
+        } else {
+            $financial_aid = $_POST["financial_aid"];
+            $financial_aid_yes = false;
+            $financial_aid_no = true;
+        }
+    } else {
+        array_push($error_bucket, "<p>Financial aid is required.</p>");
+    }
+
+    if (empty($_POST["gpa"])) {
+        $gpa = 0;
+    } else {
+        $gpa = $_POST["gpa"];
+    }
     if (empty($_POST["email"])) {
         array_push($error_bucket, "<p>An email address is required.</p>");
     } else {
@@ -34,14 +61,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $phone = $_POST["phone"];
     }
 
-    // If we have no errors than we can try and insert the data
+    $degree_program = $_POST["degree_program"];
+
+    //Here, we can add values and data such as GPA to have information inserted into them
     if (count($error_bucket) == 0) {
         // Time for some SQL
-        $sql = "INSERT INTO $db_table (first_name,last_name,email,phone,student_id) ";
-        $sql .= "VALUES (:first,:last,:email,:phone,:student_id)";
+        $sql = "INSERT INTO $db_table (first_name,last_name,email,phone,student_id,gpa,financial_aid,degree_program) ";
+        $sql .= "VALUES (:first,:last,:email,:phone,:student_id,:gpa,:financial_aid,:degree_program)";
 
         $stmt = $db->prepare($sql);
-        $stmt->execute(["first" => $first, "last" => $last, "email" => $email, "phone" => $phone, "student_id" => $student_id]);
+        $stmt->execute(["first" => $first, "last" => $last, "student_id" => $student_id, "gpa" => $gpa, "financial_aid" => $financial_aid, "degree_program" => $degree_program, "email" => $email, "phone" => $phone]);
 
         if ($stmt->rowCount() == 0) {
             echo '<div class="alert alert-danger" role="alert">

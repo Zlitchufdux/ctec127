@@ -1,9 +1,45 @@
 <?php
 require 'db_connect.inc.php';
 
+// PDO Query
+
+// $id = $_GET['id'];
+
+// $stmt = $pdo->query('SELECT * FROM posts WHERE id = ' . $id);
 $stmt = $pdo->query('SELECT * FROM posts');
 
+// var_dump($stmt);
 
+// Fetching data as an associative array one database row at a time
+
+// while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+//     // echo "<pre>";
+//     // var_dump($row);
+//     // echo "</pre>";
+//     echo "<h1>" . "ID:" . $row["id"] . " | " . $row["title"] . "</h1>";
+//     echo "<p>" . $row["author"] . "<p>";
+//     echo "<hr>";
+//     echo "<p>" . $row["body"] . "</p>";
+//     echo "<p>" . $row["created_at"] . "</p>";
+//     echo "<br><br>";
+// }
+
+// while ($row = $stmt->fetch()) {
+//     echo "<h1>" . $row->title . "</h1>";
+//     echo "<p>" . $row->author . "<p>";
+//     echo "<hr>";
+//     echo "<p>" . $row->body . "</p>";
+//     echo "<br><br>";
+// }
+
+// Using Prepared Statements (prepare and execute)
+// UNSAFE WAY TO DO
+// $sql = "SELECT * FROM posts WHERE author = '$author'";
+// Prepared Statements separate the query instructions from the data
+
+// Now lets fetch some data like we did above but now using Prepared Statements
+// Fetch Multiple Posts
+// Positional Parameters
 
 $author = "Gayle Ujifusa";
 $is_published = 1;
